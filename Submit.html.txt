@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>
+My First Html
+</h1>
+<p1>
+My html jurney started on 14th February
+</p1>
+</body>
+<footer>Curent location is water </footer>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+	<title>Reg Form</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script>src = "email.js"</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<style>
+		#myDIV {
+			width: 100%;
+			padding: 50px 0;
+			text-align: center;
+			background-color: #87CEEB;
+			margin-top: 20px;
+		}
+	</style>
+	<script type="text/javascript">
+		function clear() {
+			var x = document.getElementById("myDIV");
+			if (x.style.display === "none") {
+				x.style.display = "block";
+			} else {
+				x.style.display = "none";
+			}
+		}
+	</script>
+	<script type="text/javascript">
+		var flg = true;
+		function education_fields() {
+
+			var boardname = $("#boardname").val();
+			var percentage = $("#percentage").val();
+			var degree = $("#degree").val();
+			var year = $("#year").val();
+
+			if (flg) {
+				tableBody = "<tr><td>" + boardname + "</td><td>" + percentage + "</td><td>" + degree + "</td><td>" + year + "</td></tr>"
+			} else {
+				tableBody += "<tr><td>" + boardname + "</td><td>" + percentage + "</td><td>" + degree + "</td><td>" + year + "</td></tr>"
+			}
+			flg = false;
+
+			$("#edu_value").html(tableBody)
+
+		}
+
+	</script>
+
+	<script type="text/javascript">
+
+		function minmax(value, min, max) {
+			if (parseInt(value) < 1 || isNaN(value)) return 1;
+			else if (parseInt(value) > 70) return 70;
+			else return value;
+		}
+
+		$(document).on('click', '.add_field', function () {
+			$('<input type="text" class="input" name="field[]" value="">').insertAfter('.input:last');
+		})
+		function ValidateEmail(email) {
+			var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			if (email.value.match(mailformat)) {
+				return (true)
+			} else {
+				alert("You have entered an invalid email address!")
+				return (false)
+			}
+
+		}
+		function Validatemobile(mobile) {
+			if (mobile.value.length == 10) {
+				return (true)
+			} else {
+				alert("You have entered an invalid Mobile Number!")
+				return (false)
+			}
+		}
+		function Validatepin(pin) {
+			if (pin.value.length == 6) {
+				return (true)
+			} else {
+				alert("You have entered an invalid PIN Number!")
+				return (false)
+			}
+		}
+
+		function formSubmit() {
+			checked = $("input[type=checkbox]:checked").length;
+			if (!checked) {
+				alert("You must confirm the checkbox.");
+				return false;
+			} else {
+
+				var fname = $("#fname").val();
+				var lname = $("#lname").val();
+				var age = $("#age").val();
+				var gender = $("#gender").val();
+				var email = $("#email").val();
+				var mobile = $("#mobile").val();
+				var address = $("#address").val();
+				var pin = $("#pin").val();
+				/*var tbd = "<tr><td>" + fname + lname + "</td><td>" + age + "</td><td>" + gender + "</td><td>" + email + "</td><td>" + mobile + "</td><td>" + address + "</td><td>" + pin + "</td></tr>"
+				$("#ed_value").html(tbd)*/
+				if (fname == "") {
+					alert("please enter first name")
+
+
+				} else if (lname == "") {
+					alert("please enter last name")
+				} else if (age == "") {
+					alert("please enteer age")
+				} else if (gender == "") {
+					alert("please enter Gender")
+				} else if (email == "") {
+					alert("please enter Email")
+				} else if (mobile == "") {
+					alert("please enter Mobile no")
+				} else if (address == "") {
+					alert("please enter address")
+
+				} else if (pin == "") {
+					alert("please enter PIN");
+				} else {
+
+					alert("Name:-    " + fname + lname + "\nAge:-   " + age + "\nGender:-   " + gender + "\nEmail:-   " + email + "\nMobile:-   " + mobile + "\nAddress:-   " + address + "\nPin:-   " + pin + "\nEducational Qualification:  " + tableBody);
+
+					var tbl_value = $("#edu_value").html();
+
+					$("#edu_value2").html(tbl_value);
+
+					$("#nameval").html(fname + " " + lname);
+					$("#ageval").html(age);
+					$("#genval").html(gender);
+					$("#mailval").html(email);
+					$("#mobval").html(mobile);
+					$("#addval").html(address);
+					$("#pinval").html(pin);
+					$("div.toshow").show();
+				}
+			}
+
+		}
+
+	</script>
+</head>
+
+<body>
+
+	<div class='container' style='border:2px solid #000; margin-top:15px;background-color:#87CEEB;'>
+		<div class='row' style='border-bottom:2px solid#000;margin-bottom:20px;background-color:#072207'>
+			<div class='col-md-4'>
+				<img src="C:\Users\a\Desktop\HTML\logo.jpg" id='logo' width='150px' height='150px' alt="Logo"
+					style='border-radius:50%; border:1px solid rgb(2, 3, 2)' />
+			</div>
+			<div class='col-md-8' style='text-align:left'>
+				<h1 style='color:#7c0676'><u>Institution name</u></h1>
+				<h3 style='color:#d40e0e'><i>Registration Form</i></h3>
+			</div>
+		</div>
+		<div class='row'>
+			<div class='col-md-6 form-group'>
+				<label for="fname" class="form-label">First Name:</label>
+				<input class='form-control' type='text' id='fname' onkeypress="return /[a-zA-Z]/i.test(event.key)"
+					required />
+
+			</div>
+
+			<div class='col-md-6 form-group'>
+				<label class="form-label">Last Name:</label>
+				<input class='form-control' type='text' id='lname' onkeypress="return /[a-zA-Z]/i.test(event.key)"
+					required />
+
+			</div>
+
+		</div>
+
+		<div class='row'>
+			<div class='col-md-6 form-group'>
+				<label class="form-label">Age:</label>
+				<input class='form-control' type='text' id='age' maxlength="2"
+					onkeyup="this.value = minmax(this.value, 0, 70)" required />
+
+			</div>
+
+			<div class='col-md-6 form-group'>
+				<label class="form-label">Gender:</label>
+				<select class='form-control' id="gender" name="gender" required>
+
+			</div>
+			<div>
+				<option value="">Select</option>
+				<option value="Male">Male</option>
+				<option value="Female">Female</option>
+				<option value="Other">Other</option>
+				</select>
+			</div>
+		</div>
+		<div class='row'>
+			<div class='col-md-6 form-group'>
+				<label class="form-label">Email:
+
+				</label>
+				<input class='form-control' type='text' id='email' onblur="ValidateEmail(this)" required />
+
+
+			</div>
+
+
+			<div class='col-md-6 form-group'>
+				<label class="form-label">Mobile:
+
+				</label>
+				<input class='form-control' type='text' id='mobile' maxlength="10"
+					onkeypress="return /[0-9]/i.test(event.key)" onblur="Validatemobile(this)" required />
+
+
+			</div>
+
+		</div>
+		<div class='row'>
+			<div class='col-md-6 form-group'>
+				<label class="form-label">Address:</label>
+				<input type="text" class='form-control' name="address" id="address"
+					onkeypress="return /[0-9a-zA-Z ]/i.test(event.key)" required />
+
+
+			</div>
+
+
+			<div class='col-md-6 form-group'>
+				<label class="form-label">PIN:</label>
+				<input type="text" class='form-control' id="pin" name="pin" maxlength="6"
+					onkeypress="return /[0-9]/i.test(event.key)" onblur="Validatepin(this)" required />
+
+			</div>
+		</div>
+
+
+
+
+		<div class="panel panel-default" id="edql" name="edql">
+
+			<div class="panel-heading" style='text-align:center'>Educational Qualification
+			</div>
+			<div class="panel-body" id="myDIV">
+
+				<div id="education_fields">
+
+				</div>
+				<div class="col-sm-3 nopadding">
+					<div class="form-group">
+						<label>Board Name</label>
+						<input type="text" class="form-control" id="boardname" name="boardname" onfocus="this.value=''"
+							placeholder="board name" onkeypress="return /[A-Z]/i.test(event.key)" required>
+					</div>
+				</div>
+				<div class="col-sm-3 nopadding">
+					<div class="form-group">
+						<label>Percentage</label>
+						<input type="text" class="form-control" id="percentage" name="percentage"
+							onfocus="this.value=''" placeholder="percentage"
+							onkeypress="return /[0-9-.]/i.test(event.key)" maxlength="5" required>
+					</div>
+				</div>
+				<div class="col-sm-3 nopadding">
+					<div class="form-group">
+						<label>Exam Name</label>
+						<input type="text" class="form-control" id="degree" name="Degree" onfocus="this.value=''"
+							placeholder="Exam Name" onkeypress="return /[a-zA-Z]/i.test(event.key)" required>
+					</div>
+				</div>
+
+				<div class="col-sm-3 nopadding">
+					<div class="form-group">
+						<div class="input-group">
+							<label>Year</label>
+							<select class="form-control" id="year" name="educationDate" onfocus="this.value='year'"
+								required>
+
+								<option value="">year</option>
+								<option value="2023">2023</option>
+								<option value="2022">2022</option>
+								<option value="2021">2021</option>
+								<option value="2020">2020</option>
+								<option value="2019">2019</option>
+								<option value="2018">2018</option>
+								<option value="2017">2017</option>
+								<option value="2016">2016</option>
+								<option value="2015">2015</option>
+								<option value="2014">2014</option>
+							</select>
+							<div class="input-group-btn">
+								<button class="btn btn-success" type="button" onclick="education_fields();">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true">
+
+									</span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<table id="edu_value" class="table table-bordered">
+
+		</table>
+
+
+
+		<div class='row'>
+			<div class='col-md-1'>
+				<input type='checkbox' />
+			</div>
+			<div class='col-md-6'>
+				<h4 style='text-align:left'>I hare by confirm that above information is correct
+				</h4>
+			</div>
+		</div>
+
+
+		<div class='row' style='text-align:center'>
+			<div class='col-md-12 form-group'>
+				<input type="button" value="submit" id="checkBtn" style='background-color:rgb(0, 255, 115)'
+					onclick="formSubmit()" />
+
+			</div>
+		</div>
+
+
+
+
+
+		<div class="toshow" style="display:none">
+		<table id="Std_details_table" class="table table-bordered">
+			<thead>
+
+				<tr>
+					<th style="text-align: center;">Student Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Name</td>
+					<td id="nameval"></td>
+				</tr>
+				<tr>
+					<td>Age</td>
+					<td id="ageval"></td>
+				</tr>
+				<tr>
+					<td>Gender</td>
+					<td id="genval"></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td id="mailval"></td>
+				</tr>
+				<tr>
+					<td>Mobile</td>
+					<td id="mobval"></td>
+				</tr>
+				<tr>
+					<td>Address</td>
+					<td id="addval"></td>
+				</tr>
+				<tr>
+					<td>Pin</td>
+					<td id="pinval"></td>
+				</tr>
+			</tbody>
+		</table>
+		<table  class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Board Name</th>
+					<th>Percentage</th>
+					<th>Exam Name</th>
+					<th>Year</th>
+				</tr>
+			</thead>
+			<tbody id="edu_value2"></tbody>
+
+		</table>
+		</div>
+
+		
+	</div>
+
+</body>
+
+
+</html>
